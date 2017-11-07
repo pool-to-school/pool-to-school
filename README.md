@@ -8,6 +8,8 @@ Shared interests:
 List of shared interests with the current profile that is being browsed
 
 Profile:
+Profile pic
+Name
 
 Shared classes:
 List of shared classes with the current profile that is being browsed
