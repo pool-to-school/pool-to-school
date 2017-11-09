@@ -2,6 +2,12 @@
 
 ## Mockups
 
+![Landing Page](https://raw.githubusercontent.com/pool-to-school/pool-to-school/master/mockups/landing_page.jpeg)
+
+![Shared Classes](https://raw.githubusercontent.com/pool-to-school/pool-to-school/master/mockups/shared_classes.jpg)
+
+![Shared Interests](https://raw.githubusercontent.com/pool-to-school/pool-to-school/master/mockups/shared_interests.jpg)
+
 Common:
 - Logo upper left
 - Navigation upper right
