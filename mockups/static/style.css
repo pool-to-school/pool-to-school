@@ -1,0 +1,135 @@
+* {
+  /*box-sizing: border-box;*/
+  /*border: 1px solid red;*/
+}
+
+body {
+  font-size: 1.25em;
+}
+
+div [class*="floated left"] {
+  float: left;
+}
+
+div [class*="floated right"] {
+  float: right;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 1em;
+}
+
+h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1em;
+}
+h2 {
+  font-size: 1.25em;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+p {
+  margin: 1em 0 1em;
+}
+
+a, a:link, a:visited, a:active, a:hover { text-decoration: underline; }
+
+.backed {
+  padding: 1em 0;
+}
+.lightgray {
+  background: whitesmoke;
+}
+.darkgray {
+  background: #4f4f4f;
+}
+.darkergray {
+  background: #1f1f1f;
+}
+.darkgray, .darkergray {
+  font-size: 0.75em;
+  color: white;
+}
+.darkgray a:link, .darkergray a:link,
+.darkgray a:visited, .darkergray a:visited {
+  color: white !important;
+}
+.darkgray a:active, .darkergray a:active,
+.darkgray a:hover, .darkergray a:hover {
+  color: #dfa00a !important;
+}
+
+#campuses img {
+  margin-bottom: 0.5em;
+}
+
+#threehero {
+  padding-top: 1em;
+  color: #8b6406;
+  text-align: center;
+}
+
+#threehero .grid p {
+  padding: 0 3em;
+}
+
+#apply {
+  height: 2.5em;
+}
+#apply .left {
+ padding: 0.5em;
+}
+.caption {
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.5em;
+}
+
+.dark.caption {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em;
+  height: 2.5em;
+  margin-top: -2.5em;
+}
+
+#nav-top {
+  height: 3em;
+}
+
+nav .menu {
+
+}
+
+#nav-logo {
+  margin: 0;
+}
+#nav-social .item {
+  width: 1.5em;
+}
+#nav-social .item .icon {
+  margin: 0 auto;
+}
+
+#nav-search {
+  text-align: right;
+}
+
+#nav-search input {
+  height: 2em;
+  border-radius: 0.5em;
+}
+
+#logo {
+  margin: 1em;
+}
+
+.news a, .news p {
+  display: block;
+  margin: 1em 0 1em;
+}
