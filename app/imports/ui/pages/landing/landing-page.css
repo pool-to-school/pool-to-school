@@ -1,7 +1,8 @@
 .landing-section-1 {
   padding: 10px 10px 30px 10px;
   background-color: darkblue;
-  color: #E5F9E7;
+  color: white;
+  font-family: cursive;
 }
 
 .landing-section-2 {
@@ -12,8 +13,8 @@
 
 .landing-section-3 {
   padding: 20px 10px 30px 30px;
-  background-color: #00B5AD;
-  color: #E5F9E7;
+  background-color: darkblue;
+  color: white;
 }
 
 .landing-section-5 {
