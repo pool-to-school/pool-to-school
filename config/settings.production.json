@@ -14,7 +14,7 @@
   },
   "galaxy.meteor.com": {
     "env": {
-      "MONGO_URL": "mongodb://<dbuser>:<dbpassword>@ds117316.mlab.com:17316/pooltoschool" //change user and password
+      "MONGO_URL": "mongodb://<dbuser>:<dbpassword>@ds117316.mlab.com:17316/pooltoschool"
     }
   }
 }
