@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { Majors } from '/imports/api/interest/MajorCollection';
+import { Roles } from '/imports/api/interest/RoleCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { _ } from 'meteor/underscore';
 
@@ -29,7 +31,7 @@ function restoreCollection(collection, restoreJSON) {
 
 Meteor.startup(() => {
   /** Only initialize database if it's empty. */
-  const collectionList = [Interests, Profiles];
+  const collectionList = [Interests, Majors, Roles, Profiles];
   const totalDocuments = _.reduce(collectionList, function reducer(memo, collection) {
     return memo + collection.count();
   }, 0);
