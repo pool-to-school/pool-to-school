@@ -17,12 +17,23 @@ a, a:link, a:visited, a:active, a:hover {
   text-decoration: underline; 
 }
 
-header, main {
+body {
+  // background-color: black;
+}
+
+header {
+  // background-color: white;
+  padding: 2em 0 0;
+}
+
+main {
   padding: 2em 0;
 }
 
+
 footer {
   padding: 2em 0 4em;
+  box-shadow: 0 500px 0 500px #1f1f1f;
 }
 
 #menu-top {
@@ -39,6 +50,58 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
   padding: 0 0 0.5em;
+}
+
+// LANDING
+
+main.landing {
+  padding: 0;
+}
+
+
+.landing {
+  &.image {
+    background-color: black;
+    background-image: url("carpool-hero.jpg");
+    background-position: 50% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2em 0;
+  }
+  &.text.container {
+    margin: 6em 0;
+    color: white;
+    text-align: center;
+  }
+
+  .grid.column {
+    padding: 1em 0;
+    p { 
+      width: 75%;
+    }
+  }
+
+  .statistic {
+    margin: 0 auto;
+    display: block;
+    .value, .label {
+      color: white;
+    }
+  }
+
+  p {
+    margin: 1em auto;
+    text-align: center;
+  }
+
+  .action {
+    padding: 1em 0 2em;
+    .button {
+      width: 50%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
 }
 
 // BROWSE 
