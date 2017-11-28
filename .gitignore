@@ -5,7 +5,7 @@
 .idea/
 
 # If on a Mac, ignore DS_Store.
-.DS_Store
+*.DS_Store
 
 # Don't commit the production settings file.
 settings.production.json
