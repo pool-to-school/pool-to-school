@@ -1,0 +1,368 @@
+<head>
+	<meta name="viewport" content="initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+
+	<link rel="stylesheet" href="semantic-ui-range/range.css">
+	<script type="text/javascript" src="semantic-ui-range/range.js"></script>
+
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="profile.js"></script>
+</head>
+<body>
+
+<header>
+	<div class="ui container" id="logo">
+		<h1>Pool to School</h1>
+	</div>
+	<div class="backed darkergray" id="menu-top">
+		<nav class="ui stackable grid container">
+			<div class="thirteen wide column">
+				<div class="ui borderless inverted menu">
+					<!-- <a href="#" class="item">Home</a> -->
+					<a href="#" class="active item">Edit Profile</a>
+					<a href="#" class="item">Browse Matches</a>
+					<a href="#" class="item">My Carpool Schedule</a>
+				</div>
+			</div>
+			<div class="three wide column">
+				<div class="ui borderless inverted menu">
+					<a href="#" class="right item">Log out</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+
+<main class="ui profile container">
+	<h2>Edit Profile</h2>
+
+	<form class="ui form">
+		<div class="two required fields">
+			<div class="field">
+				<label for="first-name">First Name</label>
+				<input name="first-name" id="first-name" placeholder="Phillip" type="text">
+			</div>
+			<div class="field">
+				<label for="last-name">Last Name</label>
+				<input nme="last-name" id="last-name" placeholder="Johnson" type="text">
+			</div>
+		</div>
+		<div class="required field">
+			<label for="interests">Interests</label>
+			<div class="ui selection dropdown multiple">
+				<div class="default text">Select at least one</div>
+				<i class="dropdown icon"></i>
+				<input type="hidden" name="interests" id="interests">
+				<div class="menu">
+					<div class="item" data-value="1">1</div>
+					<div class="item" data-value="2">2</div>
+					<div class="item" data-value="3">3</div>
+					<div class="item" data-value="4">4</div>
+					<div class="item" data-value="5">5</div>
+					<div class="item" data-value="6">6</div>
+					<div class="item" data-value="7">7</div>
+					<div class="item" data-value="8">8</div>
+					<div class="item" data-value="9">9</div>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<label for="major">Major</label>
+			<div class="ui selection dropdown">
+				<div class="default text">Select one</div>
+				<i class="dropdown icon"></i>
+				<input type="hidden" name="major" id="major">
+				<div class="menu">
+					<div class="item" data-value="1">1</div>
+					<div class="item" data-value="2">2</div>
+					<div class="item" data-value="3">3</div>
+					<div class="item" data-value="4">4</div>
+					<div class="item" data-value="5">5</div>
+					<div class="item" data-value="6">6</div>
+					<div class="item" data-value="7">7</div>
+					<div class="item" data-value="8">8</div>
+					<div class="item" data-value="9">9</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="required dynamic role field">
+			<label>Role</label>
+			<div class="ui two item category role menu">
+				<a class="driver item">Driver</a>
+				<a class="passenger item">Passenger</a>
+			</div>
+		</div>
+		<div class="grouped static role fields">
+			<div class="driver field">
+				<input type="radio" name="role" id="role-driver">
+				<label for="role-driver">Driver</label>
+			</div>
+			<div class="passenger field">
+				<input type="radio" name="role" id="role-passenger">
+				<label for="role-passenger">Passenger</label>
+			</div>
+		</div>
+		<div class="required field">
+			<label>Schedule</label>
+		</div>
+		<div class="ui schedule segment">
+			<div class="three fields">
+				<div class="field"~><label>Day</label></div>
+				<div class="field"><label>Arrive By...</label></div>
+				<div class="field"><label>Leave By...</label></div>
+			</div>
+			<div class="three sun day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">sunday</div>
+					<div class="static">
+						<label for="sun-has">sunday</label>
+						<input type="checkbox" name="sun-has" id="sun-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="sun-arrive" id="sun-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="sun-leave" id="sun-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three mon day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">monday</div>
+					<div class="static">
+						<label for="mon-has">monday</label>
+						<input type="checkbox" name="mon-has" id="mon-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="mon-arrive" id="mon-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="mon-leave" id="mon-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three tues day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">tuesday</div>
+					<div class="static">
+						<label for="tues-has">tuesday</label>
+						<input type="checkbox" name="tues-has" id="tues-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="tues-arrive" id="tues-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="tues-leave" id="tues-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three wednes day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">wednesday</div>
+					<div class="static">
+						<label for="wednes-has">wednesday</label>
+						<input type="checkbox" name="wednes-has" id="wednes-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="wednes-arrive" id="wednes-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="wednes-leave" id="wednes-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three thurs day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">thursday</div>
+					<div class="static">
+						<label for="thurs-has">thursday</label>
+						<input type="checkbox" name="thurs-has" id="thurs-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="thurs-arrive" id="thurs-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="thurs-leave" id="thurs-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three fri day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">friday</div>
+					<div class="static">
+						<label for="fri-has">friday</label>
+						<input type="checkbox" name="fri-has" id="fri-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="fri-arrive" id="fri-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="fri-leave" id="fri-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="three satur day fields"> 
+				<div class="has field">
+					<div class="ui dynamic blue basic button">saturday</div>
+					<div class="static">
+						<label for="satur-has">saturday</label>
+						<input type="checkbox" name="satur-has" id="satur-has">
+					</div>
+				</div>
+				<div class="arrive field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="satur-arrive" id="satur-arrive">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+				<div class="leave field">
+					<div class="ui selection dropdown">
+						<div class="default text">Select one</div>
+						<i class="dropdown icon"></i>
+						<input type="hidden" name="satur-leave" id="satur-leave">
+						<div class="menu">
+							<div class="item" data-value="test value">test value</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+<!-- 
+		(.field>.label+input[type="text"])*2
+
+		.two.required.fields>(.field>.label{Label}+input[placeholder="Placeholder" type="text"])*2
+ -->
+
+
+
+	</div>
+<!-- 
+	<div>I'm a...</div>
+	<div class="ui two item category menu">
+		<a href="#" class="active item">Driver</a>
+		<a href="#" class="item">Passenger</a>
+	</div>
+ -->
+
+</main>
+
+
+<footer class="backed darkergray">
+	<nav class="ui two column stackable grid container">
+		<div class="column">
+			<h4>Pool to School Organization</h4>
+			<div class="ui list">
+				<a href="#"  class="item">contact us</a>
+				<a href="#"  class="item">about us</a>
+				<a href="#"  class="item">need help?</a>
+			</div>
+		</div>
+		<div class="column">
+			<h4>University of Hawaii at Manoa</h4>
+			<div class="ui list">
+				<a href="#"  class="item">about organization</a>
+				<a href="#"  class="item">contact school</a>
+				<a href="#"  class="item">go to school</a>
+			</div>
+		</div>
+	</nav>
+</footer>
+
+
+<script>$('.ui.dropdown').dropdown();</script>
+
+</body>
