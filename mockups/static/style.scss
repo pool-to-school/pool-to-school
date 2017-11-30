@@ -129,9 +129,22 @@ main.landing {
   }
 }
 
+// PROFILE
 
+.profile {
+  .role.menu {
+    margin-top: 0;
+  }
+  .schedule {
+    .day.fields .has .button {
+      width: 100%;
+    }
+  }
+}
 
-
+.dynamic {
+  display: none;
+}
 
 .backed {
   &.lightgray { background: whitesmoke; }
