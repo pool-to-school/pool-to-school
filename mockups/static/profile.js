@@ -25,22 +25,20 @@ $(document).ready(()=>{
 			role.field[role.value].prop("checked", true);
 		}
 
-		let switchRole = function(role, from, to) {
-			if (role.value == from) {
-				role.field[role.value].prop("checked", false);
-				role.menu[role.value].removeClass("active");
-			}
-			role.value = to;
-			role.field[role.value].prop("checked", true);
-			role.menu[role.value].addClass("active");
-		}
+		let switchRole = function(obj, from, to) {
+			return function() {
+				if (obj.value == from) {
+					obj.field[obj.value].prop("checked", false);
+					obj.menu[obj.value].removeClass("active");
+				}
+				obj.value = to;
+				obj.field[obj.value].prop("checked", true);
+				obj.menu[obj.value].addClass("active");
+			};
+		};
 		// connect menu to radio
-		role.menu.driver.on('click', function() {
-			switchRole(role, "passenger", "driver");
-		});
-		role.menu.passenger.on('click', function() {
-			switchRole(role, "driver", "passenger");
-		});
+		role.menu.driver.on("click", switchRole(role, "passenger", "driver"));
+		role.menu.passenger.on("click", switchRole(role, "driver", "passenger"));
 	}
 
 	// SCHEDULE 
@@ -53,13 +51,13 @@ $(document).ready(()=>{
 			schedule.values[day] = {
 				has: false,
 				arrive: "",
-				leave: ""
+				depart: ""
 			};
 			schedule.fields[day] = {
 				checkbox: $(`.schedule .${day}.day.fields .has.field input`),
 				button: $(`.schedule .${day}.day.fields .has.field .button`),
 				arrive: $(`.schedule .${day}.day.fields .arrive.field`),
-				leave: $(`.schedule .${day}.day.fields .leave.field`)
+				depart: $(`.schedule .${day}.day.fields .depart.field`)
 			}
 			
 			// field functionality
@@ -69,37 +67,41 @@ $(document).ready(()=>{
 			if (value.arrive == "") {
 				field.arrive.addClass("disabled");
 			}
-			if (value.leave == "") {
-				field.leave.addClass("disabled");
+			if (value.depart == "") {
+				field.depart.addClass("disabled");
 			}
 
-			field.button.on('click', function() {
+			let valueToggle = function() {
 				value.has = !value.has;
+				field.checkbox.prop("checked", value.has);
+
+				let action;
 				if (value.has) {
-					field.checkbox.prop("checked", true);
-					field.button.removeClass("basic");
-					field.arrive.removeClass("disabled");
-					field.leave.removeClass("disabled");
+					action = "removeClass";
+					field.arrive.find(".dropdown").dropdown("set text", "Select latest arrival time");
+					field.depart.find(".dropdown").dropdown("set text", "Select earliest departure time");
+				} else {
+					action = "addClass";
+					field.arrive.find(".dropdown").dropdown("clear", null);
+					field.depart.find(".dropdown").dropdown("clear", null);
 				}
-				else {
-					field.checkbox.prop("checked", false);
-					field.button.addClass("basic");
-					field.arrive.addClass("disabled");
-					field.leave.addClass("disabled");
 
-					field.arrive.find('.dropdown').dropdown('clear');
-					field.leave.find('.dropdown').dropdown('clear');
-				}
-			});
+				field.button[action]("basic");
+				field.arrive[action]("disabled");
+				field.depart[action]("disabled");
+			};
 
-			field.arrive.on('change', function(event) {
-				value.arrive = event.target.value;
-				console.log(value.arrive);
-			});
-			field.leave.on('change', function(event) {
-				value.leave = event.target.value;
-				console.log(value.leave);
-			});
+			let valueUpdate = function(what) {
+				return function(event) {
+					value[what] = event.target.value;
+					console.log(value[what]);
+				};
+			};
+
+			field.button.on("click", valueToggle);
+
+			field.arrive.on("change", valueUpdate("arrive"));
+			field.depart.on("change", valueUpdate("leave"));
 		}
 	}
 
@@ -130,32 +132,32 @@ $(document).ready(()=>{
 		// console.log(schedule);
 		// console.log(location);
 
-		button.interest.on('click', ()=>{
+		button.interest.on("click", ()=>{
 			
-			if (button.interest.hasClass('active'))
-				button.interest.removeClass('active');
+			if (button.interest.hasClass("active"))
+				button.interest.removeClass("active");
 			else
-				button.interest.addClass('active');
+				button.interest.addClass("active");
 
 			interests.transition({
 				animation: "fade down",
 			});
 		});
-		button.schedule.on('click', ()=>{
-			if (button.schedule.hasClass('active'))
-				button.schedule.removeClass('active');
+		button.schedule.on("click", ()=>{
+			if (button.schedule.hasClass("active"))
+				button.schedule.removeClass("active");
 			else
-				button.schedule.addClass('active');
+				button.schedule.addClass("active");
 
 			schedule.transition({
 				animation: "fade down",
 			});
 		});
-		button.location.on('click', ()=>{
-			if (button.location.hasClass('active'))
-				button.location.removeClass('active');
+		button.location.on("click", ()=>{
+			if (button.location.hasClass("active"))
+				button.location.removeClass("active");
 			else
-				button.location.addClass('active');
+				button.location.addClass("active");
 
 			location.transition({
 				animation: "fade down",
@@ -167,9 +169,9 @@ $(document).ready(()=>{
 	menu.children().each(function() {
 		let item = $(this);
 		console.log(this);
-		item.on('click', () => {
-			menu.children().removeClass('active');
-			item.addClass('active');
+		item.on("click", () => {
+			menu.children().removeClass("active");
+			item.addClass("active");
 		});
 	});
 */
