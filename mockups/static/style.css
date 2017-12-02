@@ -49,7 +49,7 @@ main.landing {
   padding: 0;
 }
 
-.landing .image {
+.landing.image {
   background-color: black;
   background-image: url("carpool-hero.jpg");
   background-position: 50% 0%;
@@ -107,15 +107,18 @@ main.landing {
   border-radius: 50%;
 }
 
-.profile .role.menu {
-  margin-top: 0;
+.profile .role {
+  position: relative;
+}
+.profile .role .button {
+  width: 100%;
 }
 .profile .schedule .day.fields .has .button {
   width: 100%;
 }
 
-.dynamic {
-  display: none;
+.static {
+  display: none !important;
 }
 
 .backed.lightgray {

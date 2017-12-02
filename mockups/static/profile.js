@@ -2,43 +2,46 @@ let role = {};
 let schedule = {};
 
 $(document).ready(()=>{
-	// activate prettier fields
-	$(".static").hide();
-	$(".dynamic").show();
 
 	// ROLE
 	{
 		// setup fields and menu
-		role.field = {
-			group: $(".role.fields"),
-			driver: $(".role.fields .driver.field input"),
-			passenger: $(".role.fields .passenger.field input")
-		};
-		role.menu = {
-			group: $(".role.menu"),
-			driver: $(".role.menu .driver.item"),
-			passenger: $(".role.menu .passenger.item")
+		role.fields = {
+			driver: {
+				radio: $(".role .static .driver input"),
+				button: $(".role .dynamic .driver .button")
+			},
+			passenger: {
+				radio: $(".role .static .passenger  input"),
+				button: $(".role .dynamic  .passenger .button")
+			}
 		};
 		role.value = ""; // TODO: populate in meteor
-		if (!!role.field[role.value]) {
-			role.menu[role.value].addClass("active");
-			role.field[role.value].prop("checked", true);
+		if (!!role.fields[role.value]) {
+			role.fields[role.value].addClass("active");
+			role.fields[role.value].prop("checked", true);
 		}
 
-		let switchRole = function(obj, from, to) {
+		let switchRole = function(obj, to) {
 			return function() {
-				if (obj.value == from) {
-					obj.field[obj.value].prop("checked", false);
-					obj.menu[obj.value].removeClass("active");
+				for (let field in obj.fields) {
+					if (field == to) {
+						obj.fields[field].radio.prop("checked", true);
+						obj.fields[field].button.removeClass("basic");
+					}
+					else {
+						obj.fields[field].radio.prop("checked", false);
+						obj.fields[field].button.addClass("basic");
+					}
 				}
 				obj.value = to;
-				obj.field[obj.value].prop("checked", true);
-				obj.menu[obj.value].addClass("active");
 			};
 		};
 		// connect menu to radio
-		role.menu.driver.on("click", switchRole(role, "passenger", "driver"));
-		role.menu.passenger.on("click", switchRole(role, "driver", "passenger"));
+		for (let field in role.fields) {
+			// console.log(`role.fields[${field}]`);
+			role.fields[field].button.on("click", switchRole(role, field));
+		}
 	}
 
 	// SCHEDULE 
@@ -64,13 +67,6 @@ $(document).ready(()=>{
 			let value = schedule.values[day];
 			let field = schedule.fields[day];
 
-			if (value.arrive == "") {
-				field.arrive.addClass("disabled");
-			}
-			if (value.depart == "") {
-				field.depart.addClass("disabled");
-			}
-
 			let valueToggle = function() {
 				value.has = !value.has;
 				field.checkbox.prop("checked", value.has);
@@ -80,7 +76,8 @@ $(document).ready(()=>{
 					action = "removeClass";
 					field.arrive.find(".dropdown").dropdown("set text", "Select latest arrival time");
 					field.depart.find(".dropdown").dropdown("set text", "Select earliest departure time");
-				} else {
+				} 
+				else {
 					action = "addClass";
 					field.arrive.find(".dropdown").dropdown("clear", null);
 					field.depart.find(".dropdown").dropdown("clear", null);
@@ -100,8 +97,12 @@ $(document).ready(()=>{
 
 			field.button.on("click", valueToggle);
 
-			field.arrive.on("change", valueUpdate("arrive"));
-			field.depart.on("change", valueUpdate("leave"));
+			for (let dropdown of ["arrive", "depart"]) {
+				field[dropdown].on("change", valueUpdate(dropdown));
+				if (value[dropdown] == "") {
+					field[dropdown].addClass("disabled");
+				}
+			}
 		}
 	}
 

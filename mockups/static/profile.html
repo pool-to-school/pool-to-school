@@ -88,30 +88,37 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="required dynamic role field">
+		<div class="required role field">
 			<label>Role</label>
-			<div class="ui two item category role menu">
+			<div class="two dynamic fields">
+				<div class="driver field">
+					<div class="blue basic ui driver button">Driver</div>
+				</div>
+				<div class="passenger field">
+					<div class="blue basic ui passenger button">Passenger</div>
+				</div>
+			</div>
+			<div class="two static role fields">
+				<div class="driver field">
+					<input type="radio" name="role" id="role-driver">
+					<label for="role-driver">Driver</label>
+				</div>
+				<div class="passenger field">
+					<input type="radio" name="role" id="role-passenger">
+					<label for="role-passenger">Passenger</label>
+				</div>
+			</div>
+			<!-- <div class="ui two item category role menu">
 				<a class="driver item">Driver</a>
 				<a class="passenger item">Passenger</a>
-			</div>
-		</div>
-		<div class="grouped static role fields">
-			<div class="driver field">
-				<input type="radio" name="role" id="role-driver">
-				<label for="role-driver">Driver</label>
-			</div>
-			<div class="passenger field">
-				<input type="radio" name="role" id="role-passenger">
-				<label for="role-passenger">Passenger</label>
-			</div>
+			</div> -->
 		</div>
 		<div class="required field">
 			<label>Schedule</label>
 		</div>
 		<div class="ui schedule segment">
 			<div class="three fields">
-				<div class="field"~><label>Day</label></div>
+				<div class="field"><label>Day</label></div>
 				<div class="field"><label>Arrive by...</label></div>
 				<div class="field"><label>Depart from...</label></div>
 			</div>

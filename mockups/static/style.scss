@@ -132,9 +132,12 @@ main.landing {
 // PROFILE
 
 .profile {
-  .role.menu {
-    margin-top: 0;
-  }
+  .role {
+    position: relative;
+    .button {
+      width: 100%
+    }
+  } 
   .schedule {
     .day.fields .has .button {
       width: 100%;
@@ -142,9 +145,13 @@ main.landing {
   }
 }
 
-.dynamic {
-  display: none;
+.static {
+  display: none !important;
 }
+
+// .dynamic {
+//   display: none;
+// }
 
 .backed {
   &.lightgray { background: whitesmoke; }
