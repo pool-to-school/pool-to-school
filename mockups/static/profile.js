@@ -16,11 +16,8 @@ $(document).ready(()=>{
 				button: $(".role .dynamic  .passenger .button")
 			}
 		};
+
 		role.value = ""; // TODO: populate in meteor
-		if (!!role.fields[role.value]) {
-			role.fields[role.value].addClass("active");
-			role.fields[role.value].prop("checked", true);
-		}
 
 		let switchRole = function(obj, to) {
 			return function() {
@@ -37,6 +34,10 @@ $(document).ready(()=>{
 				obj.value = to;
 			};
 		};
+
+		if (!!role.fields[role.value]) {
+			switchRole(role, role.value);
+		}
 		// connect menu to radio
 		for (let field in role.fields) {
 			// console.log(`role.fields[${field}]`);
