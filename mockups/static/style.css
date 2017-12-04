@@ -49,7 +49,7 @@ main.landing {
   padding: 0;
 }
 
-.landing.image {
+.landing .image {
   background-color: black;
   background-image: url("carpool-hero.jpg");
   background-position: 50% 0%;
@@ -57,7 +57,7 @@ main.landing {
   background-repeat: no-repeat;
   padding: 2em 0;
 }
-.landing.text.container {
+.landing .image .text.container {
   margin: 6em 0;
   color: white;
   text-align: center;
