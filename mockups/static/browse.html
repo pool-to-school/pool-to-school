@@ -3,6 +3,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
 	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="initial-scale=1">
 	<script type="text/javascript" src="browse.js"></script>
 </head>
 <body>
@@ -30,7 +31,7 @@
 	</div>
 </header>
 
-<main class="ui container">
+<main class="ui browse container">
 	<h2>Browse Matches</h2>
 	<div class="ui four item category menu">
 		<a href="#" class="active item">Best Matches</a>
@@ -38,8 +39,13 @@
 		<a href="#" class="item">By Schedule</a>
 		<a href="#" class="item">By Location</a>
 	</div>
-	<div class="ui relaxed browse items">
-		<div class="item">
+	<div class="ui relaxed items">
+		<div class="item" 
+			data-rank-best="1" 
+			data-rank-interests="1"
+			data-rank-schedule="1"
+			data-rank-location="1"
+		>
 			<div class="ui tiny image">
 				<img class="avatar" src="https://msudenver.edu/media/sampleassets/profile-placeholder.png">
 			</div>
@@ -51,39 +57,47 @@
 				<div class="extra">
 					<div class="ui blue interest button">8/9 interests</div>
 					<div class="ui icon buttons">
+						<div class="ui blue disabled schedule button">U</div>
 						<div class="ui blue schedule button">M</div>
 						<div class="ui blue schedule button">T</div>
 						<div class="ui blue schedule button">W</div>
 						<div class="ui blue schedule button">R</div>
 						<div class="ui blue disabled schedule button">F</div>
+						<div class="ui blue disabled schedule button">S</div>
 					</div>
 					<div class="ui blue location button">Nearby</div>
+
+					<div class="interest details">
+						<div class="ui blue label">One</div>
+						<div class="ui blue label">Two</div>
+						<div class="ui blue label">Three</div>
+						<div class="ui blue label">Four</div>
+						<div class="ui blue label">Five</div>
+						<div class="ui blue label">Six</div>
+						<div class="ui blue label">Seven</div>
+						<div class="ui blue label">Eight</div>
+					</div>
+					<div class="schedule details">
+						Schedule Placeholder
+					</div>
+					<div class="location details">
+						Location Placeholder
+					</div>
+
 					<div class="ui right floated blue button">
 						<i class="left car icon"></i>
 						Join Carpool
 					</div>
 				</div>
-
-				<div class="interest details">
-					<div class="ui blue label">One</div>
-					<div class="ui blue label">Two</div>
-					<div class="ui blue label">Three</div>
-					<div class="ui blue label">Four</div>
-					<div class="ui blue label">Five</div>
-					<div class="ui blue label">Six</div>
-					<div class="ui blue label">Seven</div>
-					<div class="ui blue label">Eight</div>
-				</div>
-				<div class="schedule details">
-					Schedule Placeholder
-				</div>
-				<div class="location details">
-					Location Placeholder
-				</div>
 			</div>
 		</div>
 
-		<div class="item">
+		<div class="item" 
+			data-rank-best="2" 
+			data-rank-interests="2"
+			data-rank-schedule="2"
+			data-rank-location="2"
+		>
 			<div class="ui tiny image">
 				<img class="avatar" src="https://msudenver.edu/media/sampleassets/profile-placeholder.png">
 			</div>
@@ -95,35 +109,43 @@
 				<div class="extra">
 					<div class="ui blue interest button">5/9 interests</div>
 					<div class="ui icon buttons">
+						<div class="ui blue disabled schedule button">U</div>
 						<div class="ui blue disabled schedule button">M</div>
 						<div class="ui blue schedule button">T</div>
 						<div class="ui blue schedule button">W</div>
 						<div class="ui blue schedule button">R</div>
 						<div class="ui blue disabled schedule button">F</div>
+						<div class="ui blue disabled schedule button">S</div>
 					</div>
 					<div class="ui blue location button">Nearby</div>
+
+					<div class="interest details">
+						<div class="ui blue label">One</div>
+						<div class="ui blue label">Two</div>
+						<div class="ui blue label">Three</div>
+						<div class="ui blue label">Four</div>
+						<div class="ui blue label">Five</div>
+					</div>
+					<div class="schedule details">
+						Schedule Placeholder
+					</div>
+					<div class="location details">
+						Location Placeholder
+					</div>
+
 					<div class="ui right floated blue button">
 						<i class="left car icon"></i>
 						Join Carpool
 					</div>
-				</div>
-				<div class="interest details">
-					<div class="ui blue label">One</div>
-					<div class="ui blue label">Two</div>
-					<div class="ui blue label">Three</div>
-					<div class="ui blue label">Four</div>
-					<div class="ui blue label">Five</div>
-				</div>
-				<div class="schedule details">
-					Schedule Placeholder
-				</div>
-				<div class="location details">
-					Location Placeholder
-				</div>
-			</div>
+				</div>			</div>
 		</div>
 
-		<div class="item">
+		<div class="item" 
+			data-rank-best="3" 
+			data-rank-interests="3"
+			data-rank-schedule="3"
+			data-rank-location="3"
+		>
 			<div class="ui tiny image">
 				<img class="avatar" src="https://msudenver.edu/media/sampleassets/profile-placeholder.png">
 			</div>
@@ -135,27 +157,31 @@
 				<div class="extra">
 					<div class="ui blue interest button">3/9 interests</div>
 					<div class="ui icon buttons">
+						<div class="ui blue disabled schedule button">U</div>
 						<div class="ui blue schedule button">M</div>
 						<div class="ui blue schedule button">T</div>
 						<div class="ui blue disabled schedule button">W</div>
 						<div class="ui blue disabled schedule button">R</div>
 						<div class="ui blue disabled schedule button">F</div>
+						<div class="ui blue disabled schedule button">S</div>
 					</div>
+
+					<div class="interest details">
+						<div class="ui blue label">One</div>
+						<div class="ui blue label">Two</div>
+						<div class="ui blue label">Three</div>
+					</div>
+					<div class="schedule details">
+						Schedule Placeholder
+					</div>
+					<div class="location details">
+						Location Placeholder
+					</div>
+
 					<div class="ui right floated blue button">
 						<i class="left car icon"></i>
 						Join Carpool
 					</div>
-				</div>
-				<div class="interest details">
-					<div class="ui blue label">One</div>
-					<div class="ui blue label">Two</div>
-					<div class="ui blue label">Three</div>
-				</div>
-				<div class="schedule details">
-					Schedule Placeholder
-				</div>
-				<div class="location details">
-					Location Placeholder
 				</div>
 			</div>
 		</div>
