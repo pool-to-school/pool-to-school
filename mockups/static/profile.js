@@ -67,6 +67,11 @@ $(document).ready(()=>{
 			// field functionality
 			let value = schedule.values[day];
 			let field = schedule.fields[day];
+			let dropdowns = [
+				field.arrive.find(".dropdown"),
+				field.depart.find(".dropdown"),
+			];
+
 
 			let valueToggle = function() {
 				value.has = !value.has;
@@ -75,13 +80,15 @@ $(document).ready(()=>{
 				let action;
 				if (value.has) {
 					action = "removeClass";
-					field.arrive.find(".dropdown").dropdown("set text", "Select latest arrival time");
-					field.depart.find(".dropdown").dropdown("set text", "Select earliest departure time");
+					for (dropdown of dropdowns) {
+						dropdown.dropdown("set text", "Select latest arrival time");
+					}
 				} 
 				else {
 					action = "addClass";
-					field.arrive.find(".dropdown").dropdown("clear", null);
-					field.depart.find(".dropdown").dropdown("clear", null);
+					for (dropdown of dropdowns) {
+						dropdown.dropdown("clear", null);
+					}
 				}
 
 				field.button[action]("basic");
