@@ -1,7 +1,3 @@
-.hidden {
-  display: none;
-}
-
 div [class*="floated left"] {
   float: left;
 }
@@ -35,7 +31,7 @@ footer {
 
 #menu-top {
   margin: 1em 0;
-  min-height: 2.75em;
+  min-height: 3em;
 }
 #menu-top .grid .column {
   padding-top: 0;
@@ -53,7 +49,7 @@ main.landing {
   padding: 0;
 }
 
-.landing.image {
+.landing .image {
   background-color: black;
   background-image: url("carpool-hero.jpg");
   background-position: 50% 0%;
@@ -61,7 +57,7 @@ main.landing {
   background-repeat: no-repeat;
   padding: 2em 0;
 }
-.landing .hero.text {
+.landing .image .text.container {
   margin: 6em 0;
   color: white;
   text-align: center;
