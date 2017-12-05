@@ -11,11 +11,10 @@
       <div class="fields">
         {{> Text_Form_Control label="First" placeholder="Philip" value=profile.firstName errorMessage=(fieldError "firstName")}}
         {{> Text_Form_Control label="Last" placeholder="Johnson" value=profile.lastName errorMessage=(fieldError "lastName")}}
-
       </div>
 
       <div class="field">
-        {{> Text_Form_Control label="Title" placeholder="Student" value=profile.title errorMessage=(fieldError "title")}}
+        {{> Text_Form_Control label="Location" placeholder="96825" value=profile.location errorMessage=(fieldError "location")}}
         {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=profile.picture errorMessage=(fieldError "picture")}}
       </div>
 
@@ -23,11 +22,18 @@
         {{> Select_Form_Control label="Interests" options=interests errorMessage=(fieldError "interests") multiple=true }}
       </div>
 
+      <div class="field">
+        {{> Select_Form_Control label="Majors" options=majors errorMessage=(fieldError "majors") multiple=false }}
+      </div>
+
+      <div class="field">
+        {{> Select_Form_Control label="Roles" options=roles errorMessage=(fieldError "roles") multiple=false }}
+      </div>
+
       <div class="fields">
 
-        {{> Social_Network_Form_Control label="Github" icon="github" placeholder="pmjohnson" value=profile.github errorMessage=(fieldError "github")}}
+
         {{> Social_Network_Form_Control label="Facebook" icon="facebook" placeholder="pmjohnson" value=profile.facebook errorMessage=(fieldError "facebook")}}
-        {{> Social_Network_Form_Control label="Instagram" icon="instagram" placeholder="pmjohnson" value=profile.instagram errorMessage=(fieldError "instagram")}}
 
       </div>
 

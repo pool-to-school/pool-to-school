@@ -10,13 +10,13 @@ import { _ } from 'meteor/underscore';
  * Represents a specific interest, such as "Software Engineering".
  * @extends module:Base~BaseCollection
  */
-class InterestCollection extends BaseCollection {
+class MajorCollection extends BaseCollection {
 
   /**
    * Creates the Interest collection.
    */
   constructor() {
-    super('Interest', new SimpleSchema({
+    super('Major', new SimpleSchema({
       name: { type: String },
       description: { type: String, optional: true },
     }));
@@ -116,4 +116,4 @@ class InterestCollection extends BaseCollection {
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const Interests = new InterestCollection();
+export const Majors = new MajorCollection();

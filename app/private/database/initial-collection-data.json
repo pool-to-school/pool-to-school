@@ -83,6 +83,36 @@
       ]
     },
     {
+      "name": "MajorCollection",
+      "contents": [
+        {
+          "name": "Computer Engineering",
+          "description": "Techniques for development of high quality systems"
+        },
+        {
+          "name": "Biology",
+          "description": "Techniques for development of high quality systems"
+        },
+        {
+          "name": "Computer Science",
+          "description": "A set of rules to be followed in computation"
+        }
+      ]
+    },
+    {
+      "name": "RoleCollection",
+      "contents": [
+        {
+          "name": "Driver",
+          "description": "Driver"
+        },
+        {
+          "name": "Passenger",
+          "description": "Passenger"
+        }
+      ]
+    },
+    {
       "name": "ProfileCollection",
       "contents": [
         {
@@ -94,6 +124,7 @@
             "Evolutionary Computation"
           ],
           "title": "Associate Professor, Information and Computer Sciences",
+          "location": "Honolulu, HI",
           "picture": "/images/altenberg.jpg"
         },
         {
@@ -105,6 +136,7 @@
             "Computer Vision"
           ],
           "title": "Associate Professor, Information and Computer Sciences",
+          "location": "Honolulu, HI",
           "picture": "/images/baek.jpg"
         },
         {
