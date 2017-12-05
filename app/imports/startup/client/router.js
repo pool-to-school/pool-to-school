@@ -60,11 +60,19 @@ userRoutes.route('/profile', {
   },
 });
 
-export const filterPageRouteName = 'Filter_Page';
-userRoutes.route('/filter', {
-  name: filterPageRouteName,
+export const matchesPageRouteName = 'Matches_Page';
+userRoutes.route('/matches', {
+  name: matchesPageRouteName,
   action() {
-    BlazeLayout.render('User_Layout', { main: filterPageRouteName });
+    BlazeLayout.render('User_Layout', { main: matchesPageRouteName });
+  },
+});
+
+export const schedulePageRouteName = 'Schedule_Page';
+userRoutes.route('/schedule', {
+  name: schedulePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: schedulePageRouteName });
   },
 });
 

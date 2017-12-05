@@ -1,0 +1,68 @@
+<template name="Matches_Page">
+<main class="ui browse container">
+  {{#if Template.subscriptionsReady}}
+    <h2>Browse Matches</h2>
+    <div class="ui four item category menu">
+      <a href="#" class="active item">Best Matches</a>
+      <a href="#" class="item">By Interests</a>
+      <a href="#" class="item">By Schedule</a>
+      <a href="#" class="item">By Location</a>
+    </div>
+    <div class="ui relaxed items">
+      {{#each profile in profiles}}
+        {{ > Matches_Page_Item profile=profile }}
+      {{/each}}
+    </div>
+  {{/if}}
+</main>
+</template>
+
+<template name="Matches_Page_Item">
+  <div class="item" 
+      data-rank-best="1" 
+      data-rank-interests="1"
+      data-rank-schedule="1"
+      data-rank-location="1"
+    >
+  <div class="ui tiny image">
+    <img class="avatar" src="{{ profile.picture }}">
+  </div>
+  <div class="content">
+    <a class="header">{{ profile.firstName }} {{ profile.lastName }}<span class="ui blue match label">Great Match</span></a>
+    <div class="description">
+      {{profile.bio}}
+    </div>
+    <div class="extra">
+      <div class="ui blue interest button">8/9 interests</div>
+      <div class="ui icon buttons">
+        <div class="ui blue disabled schedule button">U</div>
+        <div class="ui blue schedule button">M</div>
+        <div class="ui blue schedule button">T</div>
+        <div class="ui blue schedule button">W</div>
+        <div class="ui blue schedule button">R</div>
+        <div class="ui blue disabled schedule button">F</div>
+        <div class="ui blue disabled schedule button">S</div>
+      </div>
+      <div class="ui blue location button">Nearby</div>
+
+      <div class="interest details">
+        {{#each interest in profile.interests}}
+          <div class="ui blue label">{{interest}}</div>
+        {{/each}}
+      </div>
+      <div class="schedule details">
+        Schedule Placeholder
+      </div>
+      <div class="location details">
+        Location Placeholder
+      </div>
+
+      <div class="ui right floated blue button">
+        <i class="left car icon"></i>
+        Join Carpool
+      </div>
+    </div>
+  </div>
+</div>
+
+</template>
