@@ -5,6 +5,7 @@ import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Majors } from '/imports/api/interest/MajorCollection';
+import { Tracker } from 'meteor/tracker';
 // import { Roles } from '/imports/api/interest/RoleCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
@@ -39,6 +40,48 @@ Template.Profile_Page.helpers({
   profile() {
     return Profiles.findDoc(FlowRouter.getParam('username'));
   },
+  schedule() {
+    // const profile = Profiles.findDoc(FlowRouter.getParam('username'));
+    // const schedule = profile.schedule;
+    const days = [
+      { name: 'Sunday', id: 'sun' },
+      { name: 'Monday', id: 'mon' },
+      { name: 'Tuesday', id: 'tues' },
+      { name: 'Wednesday', id: 'wednes' },
+      { name: 'Thursday', id: 'thurs' },
+      { name: 'Friday', id: 'fri' },
+      { name: 'Saturday', id: 'satur' },
+    ];
+    // for (const day in days) {
+    //   if (days[day]) {
+    //     days[day].value = schedule[day];
+    //   }
+    // }
+    return days;
+  },
+  days() {
+    // const profile = Profiles.findDoc(FlowRouter.getParam('username'));
+    // const schedule = profile.schedule;
+    const days = [
+      { name: 'Sunday', id: 'sun' },
+      { name: 'Monday', id: 'mon' },
+      { name: 'Tuesday', id: 'tues' },
+      { name: 'Wednesday', id: 'wednes' },
+      { name: 'Thursday', id: 'thurs' },
+      { name: 'Friday', id: 'fri' },
+      { name: 'Saturday', id: 'satur' },
+    ];
+    // for (const day in days) {
+    //   if (days[day]) {
+    //     days[day].value = schedule[day];
+    //   }
+    // }
+    return days;
+  },
+  times() {
+    return [
+    ];
+  },
   interests() {
     const profile = Profiles.findDoc(FlowRouter.getParam('username'));
     const selectedInterests = profile.interests;
@@ -55,54 +98,44 @@ Template.Profile_Page.helpers({
           return { label: major.name, selected: _.contains(selectedMajors, major.name) };
         });
   },
-  // roles() {
-  //   const profile = Profiles.findDoc(FlowRouter.getParam('username'));
-  //   const selectedRoles = profile.roles;
-  //   return profile && _.map(Roles.findAll(),
-  //                         function makeInterestObject(role) {
-  //                           return { label: role.name, selected: _.contains(selectedRoles, role.name) };
-  //                         });
-  // },
 });
 
 
 Template.Profile_Page.events({
   'submit .profile-data-form'(event, instance) {
+    // const f = event.target;
+    const get = function (prop) {
+      return event.target[prop].value;
+    };
     event.preventDefault();
-    const firstName = event.target.First.value;
-    const lastName = event.target.Last.value;
-    const title = '';
-    const location = event.target.Location.value;
-    const username = FlowRouter.getParam('username'); // schema requires username.
-    const picture = event.target.Picture.value;
-    // const github = '';
-    let fb = '';
-    if (event.target.Facebook.value !== '') {
-      fb = event.target.Facebook.value;
-    }
-    const facebook = fb;
-    // const instagram = '';
-    const bio = event.target.Bio.value;
+
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
     const selectedMajors = _.filter(event.target.Majors.selectedOptions, (option) => option.selected);
     const majors = _.map(selectedMajors, (option) => option.value);
-    // const selectedRoles = _.filter(event.target.Roles.selectedOptions, (option) => option.selected);
-    // const roles = _.map(selectedRoles, (option) => option.value);
 
-    const updatedProfileData = { firstName, lastName, title, picture, facebook, bio, interests,
-      majors, username, location };
+    const data = {
+      username: FlowRouter.getParam('username'),
+      firstName: get('first-name'),
+      lastName: get('last-name'),
+      location: get('location'),
+      // picture: get('picture'),
+      // bio: get('Bio'),
+      // facebook: get('Facebook') !== '' ? get('Facebook') : null,
+      interests,
+      majors,
+    };
 
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that updatedProfileData reflects what will be inserted.
-    Profiles.getSchema().clean(updatedProfileData);
+    Profiles.getSchema().clean(data);
     // Determine validity.
-    instance.context.validate(updatedProfileData);
+    instance.context.validate(data);
 
     if (instance.context.isValid()) {
       const docID = Profiles.findDoc(FlowRouter.getParam('username'))._id;
-      const id = Profiles.update(docID, { $set: updatedProfileData });
+      const id = Profiles.update(docID, { $set: data });
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);
     } else {
@@ -112,12 +145,7 @@ Template.Profile_Page.events({
   },
 });
 
-
-// i can't figure out how to get this working sorry, meteor is bad sometimes
-/*
-Template.Profile_Page.onRendered(function () {
-
-  console.log("that's me!");
+const onRendered = function () {
   const role = {};
   const schedule = {};
 
@@ -182,14 +210,12 @@ Template.Profile_Page.onRendered(function () {
         let action;
         if (value.has) {
           action = 'removeClass';
-          for (const dropdown of dropdowns) {
-            dropdown.dropdown('set text', 'Select latest arrival time');
-          }
+          dropdowns.arrive.dropdown('set text', 'Select latest arrival time');
+          dropdowns.depart.dropdown('set text', 'Select earliest departure time');
         } else {
           action = 'addClass';
-          for (const dropdown of dropdowns) {
-            dropdown.dropdown('clear', null);
-          }
+          dropdowns.arrive.dropdown('clear', null);
+          dropdowns.depart.dropdown('clear', null);
         }
 
         field.button[action]('basic');
@@ -222,10 +248,10 @@ Template.Profile_Page.onRendered(function () {
       // field functionality
       const value = schedule.values[day];
       const field = schedule.fields[day];
-      const dropdowns = [
-        field.arrive.find('.dropdown'),
-        field.depart.find('.dropdown'),
-      ];
+      const dropdowns = {
+        arrive: field.arrive.find('.dropdown'),
+        depart: field.depart.find('.dropdown'),
+      };
 
       field.button.on('click', valueToggle(value, field, dropdowns));
 
@@ -237,5 +263,17 @@ Template.Profile_Page.onRendered(function () {
       }
     }
   }
+
+  this.$('.ui.dropdown').dropdown();
+};
+
+
+Template.Profile_Page.onRendered(function () {
+  this.autorun(() => {
+    if (this.subscriptionsReady()) {
+      Tracker.afterFlush(() => {
+        onRendered();
+      });
+    }
+  });
 });
-*/
