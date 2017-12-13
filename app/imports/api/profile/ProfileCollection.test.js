@@ -4,7 +4,7 @@
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Majors } from '/imports/api/interest/MajorCollection';
-import { Roles } from '/imports/api/interest/RoleCollection';
+// import { Roles } from '/imports/api/interest/RoleCollection';
 import { Meteor } from 'meteor/meteor';
 import { expect } from 'chai';
 import { removeAllEntities } from '/imports/api/base/BaseUtilities';
@@ -15,15 +15,15 @@ if (Meteor.isServer) {
     const interestDescription = 'Tools for software development';
     const majorName = 'Computer Engineering';
     const majorDescription = 'Tools for software development';
-    const roleName = 'Driver';
-    const roleDescription = 'A driver';
+    // const roleName = 'Driver';
+    // const roleDescription = 'A driver';
     const firstName = 'Philip';
     const lastName = 'Johnson';
     const username = 'johnson';
     const bio = 'I have been a professor of computer science at UH since 1990.';
     const interests = [interestName];
     const majors = [majorName];
-    const roles = [roleName];
+    // const roles = [roleName];
     const picture = 'http://philipmjohnson.org/headshot.jpg';
     const title = 'Professor Computer Science';
     const location = 'Honolulu, HI';
@@ -32,14 +32,14 @@ if (Meteor.isServer) {
     const instagram = 'http://github.com/philipjohnson';
     const defineObject = { firstName, lastName, username, bio, interests,
       majors, picture, title, github, facebook, instagram,
-    location, roles };
+    location };
 
     before(function setup() {
       removeAllEntities();
       // Define a sample interest.
       Interests.define({ name: interestName, description: interestDescription });
       Majors.define({ name: majorName, description: majorDescription });
-      Roles.define({ name: roleName, description: roleDescription });
+      // Roles.define({ name: roleName, description: roleDescription });
     });
 
     after(function teardown() {

@@ -37,7 +37,7 @@ class MajorCollection extends BaseCollection {
     check(name, String);
     check(description, String);
     if (this.find({ name }).count() > 0) {
-      throw new Meteor.Error(`${name} is previously defined in another Interest`);
+      throw new Meteor.Error(`${name} is previously defined in another Major`);
     }
     return this._collection.insert({ name, description });
   }
