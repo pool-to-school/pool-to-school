@@ -5,62 +5,50 @@
 <main class="ui profile container">
   <h2>Edit Profile</h2>
 
-  <form class="ui form">
+  <form class="ui profile-data-form form">
     <div class="two required fields">
-      <div class="field">
-        <label for="first-name">First Name</label>
-        <input name="first-name" id="first-name" placeholder="Phillip" type="text">
-      </div>
-      <div class="field">
-        <label for="last-name">Last Name</label>
-        <input name="last-name" id="last-name" placeholder="Johnson" type="text">
-      </div>
+      {{> Field_Text 
+        name="first-name" id="first-name" label="First Name" 
+        value=profile.firstName placeholder="e.g. Phillip" required=true
+      }}
+      {{> Field_Text 
+        name="last-name" id="last-name" label="First Name" 
+        value=profile.lastName placeholder="e.g. Johnson" required=true
+      }}
     </div>
 
-    <div class="required field">
-      <label for="interests">Interests</label>
-      <div class="ui selection dropdown multiple">
-        <div class="default text">Select at least one</div>
-        <i class="dropdown icon"></i>
-        <input type="hidden" name="interests" id="interests">
-        <div class="menu">
-          <div class="item" data-value="1">1</div>
-        </div>
-      </div>
-    </div>
+    {{> Field_Text 
+      name="location" id="location" label="Zipcode" 
+      value=profile.location placeholder="e.g. 96822" required=true
+    }}
 
-    <div class="field">
-      <label for="major">Major</label>
-      <div class="ui selection dropdown">
-        <div class="default text">Select one</div>
-        <i class="dropdown icon"></i>
-        <input type="hidden" name="major" id="major">
-        <div class="menu">
-          <div class="item" data-value="1">1</div>
-        </div>
-      </div>
-    </div>
+    {{> Field_Text 
+      name="picture" id="picture"  label="Picture" 
+      value=profile.picture placeholder="http://foo.com/shot.jpg" 
+      errorMessage=(fieldError "picture")
+    }}
+
+    {{> Field_Textarea
+      name="bio" id="bio" label="Bio" 
+      value=profile.bio placeholder="Write about yourself" 
+      errorMessage=(fieldError "bio") required=true
+    }}
+
+    {{> Field_Dropdown 
+      name="interests" label="Interests" 
+      value=profile.interests options=interests 
+      errorMessage=(fieldError "interests") multiple=true required=true
+    }}
+
+    {{> Field_Dropdown 
+      name="major" label="Major" 
+      value=profile.major options=majors
+      errorMessage=(fieldError "major") multiple=false required=true
+    }}
 
     <div class="required role field">
       <label>Role</label>
-      <div class="two dynamic fields">
-        <div class="driver field">
-          <div class="blue basic ui driver button">Driver</div>
-        </div>
-        <div class="passenger field">
-          <div class="blue basic ui passenger button">Passenger</div>
-        </div>
-      </div>
-      <div class="two static role fields">
-        <div class="driver field">
-          <input type="radio" name="role" id="role-driver">
-          <label for="role-driver">Driver</label>
-        </div>
-        <div class="passenger field">
-          <input type="radio" name="role" id="role-passenger">
-          <label for="role-passenger">Passenger</label>
-        </div>
-      </div>
+      {{> Field_Role driver=(role 'driver') passenger=(role 'passenger') }}
     </div>
 
     <div class="required field">
@@ -75,22 +63,87 @@
       </div>
 
       {{#each day in days}}
-        {{> Field_Day name=day.name day=day.id }}
+        {{> Field_Day day=day has=(schedule day.id 'has') times=times }}
       {{/each}}
 
     </div>
     <button class="ui primary button" type="submit">Submit</button>
-    {{#if displaySuccessMessage}}
-      <div class="ui success message">
-        <p>Profile data successfully updated.</p>
-      </div>
-    {{/if}}
-
   </form>
+
+  {{#if displayErrorMessages}}
+    <div class="ui error message">
+      <p>There was a problem updating your profile:</p>
+      <ul>
+        {{#each error in errors}}
+        <li>{{error}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  {{#if displaySuccessMessage}}
+    <div class="ui success message">
+      <p>Profile data successfully updated.</p>
+    </div>
+  {{/if}}
 
 </main>
 {{/if}}
 
+</template>
+
+<template name="Field_Role">
+  <div class="two dynamic fields">
+    <div class="driver field">
+      <div class="blue {{#unless driver}}basic{{/unless}} ui driver button">Driver</div>
+    </div>
+    <div class="passenger field">
+      <div class="blue {{#unless passenger}}basic{{/unless}} ui passenger button">Passenger</div>
+    </div>
+  </div>
+  <div class="two static role fields">
+    <div class="driver field">
+      <input type="radio" name="role" id="role-driver" checked="{{driver}}">
+      <label for="role-driver">Driver</label>
+    </div>
+    <div class="passenger field">
+      <input type="radio" name="role" id="role-passenger" checked="{{passenger}}">
+      <label for="role-passenger">Passenger</label>
+    </div>
+  </div>
+</template>
+
+<template name="Field_Day">
+  <div class="ui divider"></div>
+  <div class="three {{day.id}} day fields"> 
+    <div class="has field">
+      <div class="ui dynamic blue {{#unless has}}basic{{/unless}} button">{{day.name}}</div>
+      <div class="static">
+        <label for="{{day.id}}-has">{{day.name}}</label>
+        <input type="checkbox" name="{{day.id}}-has" id="{{day.id}}-has" checked="{{has}}">
+      </div>
+    </div>
+    {{> Field_Dropdown 
+      class="arrive" name=(concat day.id '-arrive') id=(concat day.id '-arrive') 
+      options=(times day.id 'arrive')
+      errorMessage="Invalid time" multiple=false required=false
+    }}
+    {{> Field_Dropdown 
+      class="depart" name=(concat day.id '-depart') id=(concat day.id '-depart') 
+      options=(times day.id 'depart')
+      errorMessage="Invalid time" multiple=false required=false
+    }}
+  </div>
+</template>
+
+<template name="Form_Error">
+  {{!
+    If errorMessage is a non-empty string, then create a ui error message whose contents is that string.
+  }}
+  {{#if errorMessage }}
+    <div class="ui error message">
+      {{ errorMessage }}
+    </div>
+  {{/if}}
 </template>
 
 <template name="Field_Dropdown">
@@ -117,10 +170,10 @@
    </div>
   }}
 
-  <div class="{{#if required}}required{{/if}} field">
-    <label>{{label}}</label>
+  <div class="{{class}} {{name}} {{#if required}}required{{/if}} field">
+    {{#if label}}<label>{{label}}</label>{{/if}}
     <select multiple="{{multiple}}" class="ui dropdown" name="{{#if name}}{{name}}{{else}}{{label}}{{/if}}">
-      <option value="">(Select {{#if multiple}}One or More{{else}}One{{/if}})</option>
+      <option value="">{{#if placeholder}}{{placeholder}}{{else}}Select {{#if multiple}}at least {{/if}}one{{/if}}</option>
       {{#each option in options}}
         <option value="{{#if option.value}}{{option.value}}{{else}}{{option.label}}{{/if}}"
                 selected="{{option.selected}}">{{option.label}}</option>
@@ -130,47 +183,60 @@
   </div>
 </template>
 
-<template name="Field_Day">
-  <div class="ui divider"></div>
-  <div class="three {{day}} day fields"> 
-    <div class="has field">
-      <div class="ui dynamic blue basic button">{{name}}</div>
-      <div class="static">
-        <label for="{{day}}-has">{{name}}</label>
-        <input type="checkbox" name="{{day}}-has" id="{{day}}-has">
+<template name="Field_Text">
+  {{!
+    Implements a text field.
+
+    Parameters: required, label, name, id, placeholder, value, errorMessage.
+      name, id, and placeholder are optional and default to label.
+      value and required are optional.
+
+    Here's an example:
+
+    <div class="required field">
+      <label>Name</label>
+      <div class="field">
+        <input type="text" name="Name" id="Name" placeholder="Your name here">
       </div>
     </div>
-    <div class="arrive field">
-      <div class="ui selection dropdown">
-        <div class="default text">Enable {{name}} to select an arrival time</div>
-        <i class="dropdown icon"></i>
-        <input type="hidden" name="{{day}}-arrive" id="{{day}}-arrive">
-        <div class="menu">
-          <div class="item" data-value="test value">test value</div>
-        </div>
-      </div>
+    }}
+  <div class="{{#if required}}required{{/if}} field">
+    <label>{{label}}</label>
+    <div class="field">
+      <input type="text"
+             name="{{#if name}}{{name}}{{else}}{{label}}{{/if}}"
+             id="{{#if id}}{{id}}{{else}}{{label}}{{/if}}"
+             placeholder="{{#if placeholder}}{{placeholder}}{{else}}{{label}}{{/if}}"
+             value="{{value}}">
     </div>
-    <div class="depart field">
-      <div class="ui selection dropdown">
-        <div class="default text">Enable {{name}} to select a departure time</div>
-        <i class="dropdown icon"></i>
-        <input type="hidden" name="{{day}}-depart" id="{{day}}-depart">
-        <div class="menu">
-          <div class="item" data-value="test value">test value</div>
-        </div>
-      </div>
-    </div>
+    {{> Form_Error_Message errorMessage=errorMessage}}
   </div>
 </template>
 
-<template name="Form_Error">
+<template name="Field_Textarea">
   {{!
-    If errorMessage is a non-empty string, then create a ui error message whose contents is that string.
-  }}
-  {{#if errorMessage }}
-    <div class="ui error message">
-      {{ errorMessage }}
-    </div>
-  {{/if}}
-</template>
+    Implements a textarea field.
 
+    Parameters: required, label, name, id, placeholder, value, errorMessage, rows.
+      name, id, and placeholder are optional and default to label.
+      value and required are optional.
+      rows is optional and defaults to 5.
+
+    Here's an example:
+
+    <div class="required field">
+      <label>Bio</label>
+      <div class="field">
+        <textarea rows="5" name="Bio" id="Bio" placeholder="Your bio here">I am a student.</textarea>
+      </div>
+    </div>
+    }}
+  <div class="{{#if required}}required{{/if}} field">
+    <label>{{#if label}}{{label}}{{else}}{{name}}{{/if}}</label>
+    <textarea rows="{{#if rows}}{{rows}}{{else}}5{{/if}}"
+              name="{{#if name}}{{name}}{{else}}{{label}}{{/if}}"
+              id="{{#if id}}{{id}}{{else}}{{name}}{{/if}}"
+              placeholder="{{#if placeholder}}{{placeholder}}{{else}}{{label}}{{/if}}">{{value}}</textarea>
+  </div>
+  {{> Form_Error_Message errorMessage=errorMessage}}
+</template>

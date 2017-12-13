@@ -54,3 +54,4 @@ insecure@1.0.7
 # Tests
 practicalmeteor:mocha
 dynamic-import
+manuel:reactivearray

@@ -2,11 +2,29 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Majors } from '/imports/api/interest/MajorCollection';
-import { Roles } from '/imports/api/interest/RoleCollection';
+// import { Roles } from '/imports/api/interest/RoleCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 
 /** @module Profile */
+
+SimpleSchema.debug = true;
+
+const daySchema = new SimpleSchema({
+  has: { type: Boolean, optional: true },
+  arrive: { type: Number, optional: true }, // 0 = 6am
+  depart: { type: Number, optional: true }, // 0 = 6am
+});
+
+const scheduleSchema = new SimpleSchema({
+  sun: { type: daySchema, optional: true },
+  mon: { type: daySchema, optional: true },
+  tues: { type: daySchema, optional: true },
+  wednes: { type: daySchema, optional: true },
+  thurs: { type: daySchema, optional: true },
+  fri: { type: daySchema, optional: true },
+  satur: { type: daySchema, optional: true },
+});
 
 /**
  * Profiles provide portfolio data for a user.
@@ -23,16 +41,14 @@ class ProfileCollection extends BaseCollection {
       // Remainder are optional
       firstName: { type: String, optional: true },
       lastName: { type: String, optional: true },
+      location: { type: String, optional: true },
       bio: { type: String, optional: true },
       interests: { type: [String], optional: true },
-      majors: { type: [String], optional: true },
-      roles: { type: [String], optional: true },
-      title: { type: String, optional: true },
-      location: { type: String, optional: true },
+      major: { type: String, optional: true },
+      role: { type: String, allowedValues: ['driver', 'passenger'], optional: true },
+      schedule: { type: scheduleSchema, optional: true },
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
-      github: { type: SimpleSchema.RegEx.Url, optional: true },
-      facebook: { type: SimpleSchema.RegEx.Url, optional: true },
-      instagram: { type: SimpleSchema.RegEx.Url, optional: true },
+      // facebook: { type: String, optional: true },
     }));
   }
 
@@ -58,12 +74,13 @@ class ProfileCollection extends BaseCollection {
    * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
    * @returns The newly created docID.
    */
-  define({ firstName = '', lastName = '', username, bio = '', interests, majors, picture = '', title = '', roles,
-      github = '', facebook = '', instagram = '', location = '' }) {
+  define({ username,
+      firstName = '', lastName = '', bio = '', picture = '', location = '',
+      interests = [], major = '', role = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { firstName: String, lastName: String, username: String, bio: String, picture: String,
-      title: String, location: String };
-    check({ firstName, lastName, username, bio, picture, title, location }, checkPattern);
+    const checkPattern = { firstName: String, lastName: String, username: String,
+      bio: String, picture: String, location: String, role: String };
+    check({ firstName, lastName, username, bio, picture, role, location }, checkPattern);
 
     if (this.find({ username }).count() > 0) {
       throw new Meteor.Error(`${username} is previously defined in another Profile`);
@@ -71,11 +88,8 @@ class ProfileCollection extends BaseCollection {
 
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interests);
-    Majors.assertNames(majors);
-    Roles.assertNames(roles);
-    return this._collection.insert({ firstName, lastName, username, bio, interests, majors,
-      picture, title, github, roles,
-      facebook, instagram, location });
+    Majors.assertNames(major);
+    return this._collection.insert({ username });
   }
 
   /**
@@ -90,16 +104,15 @@ class ProfileCollection extends BaseCollection {
     const username = doc.username;
     const bio = doc.bio;
     const interests = doc.interests;
-    const majors = doc.majors;
-    const roles = doc.roles;
+    const major = doc.major;
+    // const roles = doc.roles;
     const picture = doc.picture;
-    const title = doc.title;
+    // const title = doc.title;
     const location = doc.location;
-    const github = doc.github;
-    const facebook = doc.facebook;
-    const instagram = doc.instagram;
-    return { firstName, lastName, username, bio, interests, majors,
-      picture, title, github, facebook, instagram, location, roles };
+    // const github = doc.github;
+    // const facebook = doc.facebook;
+    // const instagram = doc.instagram;
+    return { username, firstName, lastName, bio, interests, major, picture, location };
   }
 }
 
