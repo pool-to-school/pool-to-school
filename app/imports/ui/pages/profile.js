@@ -90,8 +90,7 @@ Template.Profile_Page.events({
     const selectedRoles = _.filter(event.target.Roles.selectedOptions, (option) => option.selected);
     const roles = _.map(selectedRoles, (option) => option.value);
 
-    const updatedProfileData = { firstName, lastName, title, picture, facebook, bio, interests,
-      majors, username, location };
+    const updatedProfileData = { firstName, lastName, title, picture, facebook, bio, interests, roles, majors, username, location };
 
     // Clear out any old validation errors.
     instance.context.resetValidation();
