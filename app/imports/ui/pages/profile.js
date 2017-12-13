@@ -117,6 +117,12 @@ Template.Profile_Page.helpers({
   displaySuccessMessage() {
     return Template.instance().messageFlags.get(displaySuccessMessage);
   },
+  displayErrorMessages() {
+    return Template.instance().messageFlags.get(displayErrorMessages);
+  },
+  errors() {
+    return Template.instance().errors;
+  },
   errorClass() {
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },

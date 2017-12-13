@@ -12,6 +12,7 @@ SimpleSchema.debug = true;
 
 const daySchema = new SimpleSchema({
   has: { type: Boolean, optional: true },
+  with: { type: [String], optional: true }, // either your driver or all your passengers
   arrive: { type: Number, optional: true }, // 0 = 6am
   depart: { type: Number, optional: true }, // 0 = 6am
 });
@@ -41,7 +42,7 @@ class ProfileCollection extends BaseCollection {
       // Remainder are optional
       firstName: { type: String, optional: true },
       lastName: { type: String, optional: true },
-      location: { type: String, optional: true },
+      location: { type: Number, optional: true },
       bio: { type: String, optional: true },
       interests: { type: [String], optional: true },
       major: { type: String, optional: true },
@@ -79,7 +80,7 @@ class ProfileCollection extends BaseCollection {
       interests = [], major = '', role = '' }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String,
-      bio: String, picture: String, location: String, role: String };
+      bio: String, picture: String, location: Number, role: String };
     check({ firstName, lastName, username, bio, picture, role, location }, checkPattern);
 
     if (this.find({ username }).count() > 0) {
