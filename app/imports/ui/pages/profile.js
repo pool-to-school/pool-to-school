@@ -5,14 +5,14 @@ import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Majors } from '/imports/api/interest/MajorCollection';
-// import { Roles } from '/imports/api/interest/RoleCollection';
+import { Roles } from '/imports/api/interest/RoleCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
 
 Template.Profile_Page.onCreated(function onCreated() {
   this.subscribe(Majors.getPublicationName());
-  // this.subscribe(Roles.getPublicationName());
+  this.subscribe(Roles.getPublicationName());
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Profiles.getPublicationName());
   this.messageFlags = new ReactiveDict();
@@ -55,14 +55,14 @@ Template.Profile_Page.helpers({
           return { label: major.name, selected: _.contains(selectedMajors, major.name) };
         });
   },
-  // roles() {
-  //   const profile = Profiles.findDoc(FlowRouter.getParam('username'));
-  //   const selectedRoles = profile.roles;
-  //   return profile && _.map(Roles.findAll(),
-  //                         function makeInterestObject(role) {
-  //                           return { label: role.name, selected: _.contains(selectedRoles, role.name) };
-  //                         });
-  // },
+   roles() {
+     const profile = Profiles.findDoc(FlowRouter.getParam('username'));
+     const selectedRoles = profile.roles;
+     return profile && _.map(Roles.findAll(),
+                           function makeInterestObject(role) {
+                             return { label: role.name, selected: _.contains(selectedRoles, role.name) };
+                    });
+ },
 });
 
 
@@ -87,8 +87,8 @@ Template.Profile_Page.events({
     const interests = _.map(selectedInterests, (option) => option.value);
     const selectedMajors = _.filter(event.target.Majors.selectedOptions, (option) => option.selected);
     const majors = _.map(selectedMajors, (option) => option.value);
-    // const selectedRoles = _.filter(event.target.Roles.selectedOptions, (option) => option.selected);
-    // const roles = _.map(selectedRoles, (option) => option.value);
+    const selectedRoles = _.filter(event.target.Roles.selectedOptions, (option) => option.selected);
+    const roles = _.map(selectedRoles, (option) => option.value);
 
     const updatedProfileData = { firstName, lastName, title, picture, facebook, bio, interests,
       majors, username, location };
@@ -135,7 +135,7 @@ Template.Profile_Page.onRendered(function () {
       },
     };
 
-    role.value = ''; // TODO: populate in meteor
+    role.value = '';
 
     const switchRole = function (ob, to) {
       const obj = ob;
@@ -206,7 +206,7 @@ Template.Profile_Page.onRendered(function () {
     };
 
     for (const day of days) {
-      // TODO: populate using meteor
+
       schedule.values[day] = {
         has: false,
         arrive: '',
