@@ -1,0 +1,51 @@
+profile
+	⌞ schedule: Object
+		⌞ ("sun", "mon", "tues", "wednes", "thurs", "fri", "satur"): Object
+			⌞ has: (Boolean) 
+			⌞ arrive: (Number) [0 = '6am', 1 = '7am', ...]
+			⌞ depart: (Number) [0 = '6am', 1 = '7am', ...]
+			⌞ with: [String] (usernames)
+				⌞ "username1"
+				⌞ "username2"
+
+for passengers:
+
+...
+	⌞ with: [String]
+		⌞ "driver username"
+
+for drivers:
+
+...
+	⌞ with: [String]
+		⌞ "passenger 1 username"
+		⌞ "passenger 2 username"
+		⌞ "passenger 3 username"
+
+example schedule schema
+
+profile
+	⌞ role: "passenger"
+	⌞ schedule
+		⌞ "sun"
+			⌞ has: false
+		⌞ "mon"
+			⌞ has: true
+			⌞ arrive: 3
+			⌞ depart: 6
+			⌞ with
+				⌞ "johndoe"
+		⌞ "tues"
+			⌞ has: false
+		⌞ "wednes":
+			⌞ has: true
+			⌞ arrive: 4
+			⌞ depart: 8
+			⌞ with
+				⌞ "janedoe"
+		⌞ "thurs"
+			⌞ has: false
+		⌞ "fri"
+			⌞ has: false
+		⌞ "satur"
+			⌞ has: false

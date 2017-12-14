@@ -1,0 +1,55 @@
+<template name="Schedule_Page">
+  <main class="ui browse container">
+    {{#if Template.subscriptionsReady}}
+
+    <table class="ui basic table">
+    <tbody>
+    <tr>
+      <td>{{monday}}</td>
+    </tr>
+    <tr>
+      <td>{{tuesday}}</td>
+    </tr>
+    <tr>
+      <td>{{wednesday}}</td>
+    </tr>
+    <tr>
+      <td>{{thursday}}</td>
+    </tr>
+    <tr>
+      <td>{{friday}}</td>
+    </tr>
+    <tr>
+      <td>{{saturday}}</td>
+    </tr>
+    <tr>
+      <td>{{sunday}}</td>
+    </tr>
+    </tbody>
+    </table>
+
+    <div class="ui relaxed items">
+      {{#each profile in profiles}}
+      {{ > Schedule_Page_Item profile=profile }}
+      {{/each}}
+    </div>
+    {{/if}}
+  </main>
+</template>
+
+<template name="Schedule_Page_Item">
+<div class="item"
+     data-rank-best="1"
+     data-rank-interests="1"
+     data-rank-schedule="1"
+     data-rank-location="1"
+>
+
+  <div class="content">
+    <a class="header">{{ profile.firstName }} {{ profile.lastName }}</a>
+
+
+  </div>
+</div>
+
+</template>

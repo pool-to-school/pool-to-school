@@ -42,7 +42,7 @@ class ProfileCollection extends BaseCollection {
       // Remainder are optional
       firstName: { type: String, optional: true },
       lastName: { type: String, optional: true },
-      location: { type: String, optional: true },
+      location: { type: Number, optional: true },
       bio: { type: String, optional: true },
       interests: { type: [String], optional: true },
       major: { type: String, optional: true },
@@ -77,11 +77,11 @@ class ProfileCollection extends BaseCollection {
    */
   define({ username,
       firstName = '', lastName = '', bio = '', picture = '', location = '',
-      interests = [], major = '', role = '', schedule = {} }) {
+      interests = [], major = '', role = '' }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String,
       bio: String, picture: String, location: String, role: String };
-    check({ firstName, lastName, username, bio, picture, role, location }, checkPattern);
+    check({ firstName, lastName, username, bio, picture, location, role }, checkPattern);
 
     if (this.find({ username }).count() > 0) {
       throw new Meteor.Error(`${username} is previously defined in another Profile`);
@@ -90,11 +90,7 @@ class ProfileCollection extends BaseCollection {
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interests);
     Majors.assertNames(major);
-    return this._collection.insert({
-      username,
-      firstName, lastName, bio, picture,
-      location, interests, major, role, schedule,
-    });
+    return this._collection.insert({ username });
   }
 
   /**
