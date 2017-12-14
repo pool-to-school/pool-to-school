@@ -77,7 +77,7 @@ class ProfileCollection extends BaseCollection {
    */
   define({ username,
       firstName = '', lastName = '', bio = '', picture = '', location = '',
-      interests = [], major = '', role = '' }) {
+      interests = [], major = '', role = '', schedule = {} }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String,
       bio: String, picture: String, location: String, role: String };
@@ -90,7 +90,11 @@ class ProfileCollection extends BaseCollection {
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interests);
     Majors.assertNames(major);
-    return this._collection.insert({ username, firstName, lastName, bio, picture, location, interests, major, role });
+    return this._collection.insert({
+      username,
+      firstName, lastName, bio, picture,
+      location, interests, major, role, schedule,
+    });
   }
 
   /**

@@ -123,6 +123,23 @@
           "interests": [
             "Evolutionary Computation"
           ],
+          "schedule": {
+            "sun": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "mon": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "tues": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            }
+          },
           "location": "Honolulu, HI",
           "picture": "/images/altenberg.jpg"
         },
@@ -134,6 +151,23 @@
           "interests": [
             "Computer Vision"
           ],
+          "schedule": {
+            "sun": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "mon": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "tues": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            }
+          },
           "location": "Honolulu, HI",
           "picture": "/images/baek.jpg"
         },
@@ -146,6 +180,23 @@
             "Mobile Networks",
             "Sailing"
           ],
+          "schedule": {
+            "tues": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "wed": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "thurs": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            }
+          },
           "picture": "/images/biagioni.jpg"
         },
         {
@@ -157,6 +208,18 @@
             "Mars",
             "Imu Cooking"
           ],
+          "schedule": {
+            "fri": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "satur": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            }
+          },
           "picture": "/images/binsted.jpg"
         },
         {
@@ -169,6 +232,23 @@
             "Surfing",
             "Photography"
           ],
+          "schedule": {
+            "tues": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "wednes": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            },
+            "thurs": {
+              "has": true,
+              "arrive": 0,
+              "depart": 12
+            }
+          },
           "picture": "/images/casanova.jpg"
         }
       ]
