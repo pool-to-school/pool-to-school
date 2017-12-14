@@ -2,6 +2,32 @@
   <main class="ui browse container">
     {{#if Template.subscriptionsReady}}
 
+    <table class="ui basic table">
+    <tbody>
+    <tr>
+      <td>{{monday}}</td>
+    </tr>
+    <tr>
+      <td>{{tuesday}}</td>
+    </tr>
+    <tr>
+      <td>{{wednesday}}</td>
+    </tr>
+    <tr>
+      <td>{{thursday}}</td>
+    </tr>
+    <tr>
+      <td>{{friday}}</td>
+    </tr>
+    <tr>
+      <td>{{saturday}}</td>
+    </tr>
+    <tr>
+      <td>{{sunday}}</td>
+    </tr>
+    </tbody>
+    </table>
+
     <div class="ui relaxed items">
       {{#each profile in profiles}}
       {{ > Schedule_Page_Item profile=profile }}
@@ -22,21 +48,7 @@
   <div class="content">
     <a class="header">{{ profile.firstName }} {{ profile.lastName }}</a>
 
-    <div class="extra">
-      <div class="ui icon buttons">
-        <div class="ui blue disabled schedule button">U</div>
-        <div class="ui blue schedule button">M</div>
-        <div class="ui blue schedule button">T</div>
-        <div class="ui blue schedule button">W</div>
-        <div class="ui blue schedule button">R</div>
-        <div class="ui blue disabled schedule button">F</div>
-        <div class="ui blue disabled schedule button">S</div>
-      </div>
 
-
-
-
-    </div>
   </div>
 </div>
 

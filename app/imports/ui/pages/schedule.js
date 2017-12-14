@@ -14,6 +14,147 @@ Template.Schedule_Page.onCreated(function onCreated() {
 });
 
 Template.Schedule_Page.helpers({
+  monday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    console.log(allProfiles);
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.mon.has == true) {
+      console.log('Monday');
+      console.log(`${times[mySchedule.mon.arrive]}-${times[mySchedule.mon.depart]}`);
+      return `Monday ${times[mySchedule.mon.arrive]}-${times[mySchedule.mon.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  tuesday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.tues.has == true) {
+      console.log('Tuesday');
+      console.log(`${times[mySchedule.tues.arrive]}-${times[mySchedule.tues.depart]}`);
+      return `Tuesday ${times[mySchedule.tues.arrive]}-${times[mySchedule.tues.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  wednesday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.wednes.has == true) {
+      console.log('Wednesday');
+      console.log(`${times[mySchedule.wednes.arrive]}-${times[mySchedule.wednes.depart]}`);
+      return `Wednesday ${times[mySchedule.wednes.arrive]}-${times[mySchedule.wednes.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  thursday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.thurs.has == true) {
+      console.log('Thursday');
+      console.log(`${times[mySchedule.thurs.arrive]}-${times[mySchedule.thurs.depart]}`);
+      return `Thursday ${times[mySchedule.thurs.arrive]}-${times[mySchedule.thurs.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  friday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.fri.has == true) {
+      console.log('Friday');
+      console.log(`${times[mySchedule.fri.arrive]}-${times[mySchedule.fri.depart]}`);
+      return `Friday ${times[mySchedule.fri.arrive]}-${times[mySchedule.fri.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  saturday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.satur.has == true) {
+      console.log('Saturday');
+      console.log(`${times[mySchedule.satur.arrive]}-${times[mySchedule.satur.depart]}`);
+      return `Saturday ${times[mySchedule.satur.arrive]}-${times[mySchedule.satur.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
+  sunday() {
+    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
+      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
+    }
+    // Find all profiles with the currently selected interests.
+    const allProfiles = Profiles.findAll();
+    const mySchedule = allProfiles[allProfiles.length - 1].schedule;
+    const times = ['6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm',
+      '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+    if (mySchedule.sun.has == true) {
+      console.log('Sunday');
+      console.log(`${times[mySchedule.sun.arrive]}-${times[mySchedule.sun.depart]}`);
+      return `Sunday ${times[mySchedule.sun.arrive]}-${times[mySchedule.sun.depart]}`;
+    }
+    else {
+      return '';
+    }
+  },
   profiles() {
     // Initialize selectedInterests to all of them if messageFlags is undefined.
     if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
