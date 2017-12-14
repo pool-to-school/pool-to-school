@@ -37,6 +37,7 @@ Template.Matches_Page.onCreated(function onCreated() {
       const matches = this.matches;
       const allProfiles = Profiles.findAll().map((doc) => (doc));
       console.log(`loaded ${allProfiles.length}`);
+      console.log(allProfiles);
 
       const profiles = _.filter(allProfiles, function (profile) {
         if (profile.username === user.username) {
