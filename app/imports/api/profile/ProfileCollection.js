@@ -80,8 +80,8 @@ class ProfileCollection extends BaseCollection {
       interests = [], major = '', role = '' }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String,
-      bio: String, picture: String, location: Number, role: String };
-    check({ firstName, lastName, username, bio, picture, role, location }, checkPattern);
+      bio: String, picture: String, location: String, role: String };
+    check({ firstName, lastName, username, bio, picture, location, role }, checkPattern);
 
     if (this.find({ username }).count() > 0) {
       throw new Meteor.Error(`${username} is previously defined in another Profile`);

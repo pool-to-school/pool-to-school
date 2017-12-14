@@ -1,0 +1,43 @@
+<template name="Schedule_Page">
+  <main class="ui browse container">
+    {{#if Template.subscriptionsReady}}
+
+    <div class="ui relaxed items">
+      {{#each profile in profiles}}
+      {{ > Schedule_Page_Item profile=profile }}
+      {{/each}}
+    </div>
+    {{/if}}
+  </main>
+</template>
+
+<template name="Schedule_Page_Item">
+<div class="item"
+     data-rank-best="1"
+     data-rank-interests="1"
+     data-rank-schedule="1"
+     data-rank-location="1"
+>
+
+  <div class="content">
+    <a class="header">{{ profile.firstName }} {{ profile.lastName }}</a>
+
+    <div class="extra">
+      <div class="ui icon buttons">
+        <div class="ui blue disabled schedule button">U</div>
+        <div class="ui blue schedule button">M</div>
+        <div class="ui blue schedule button">T</div>
+        <div class="ui blue schedule button">W</div>
+        <div class="ui blue schedule button">R</div>
+        <div class="ui blue disabled schedule button">F</div>
+        <div class="ui blue disabled schedule button">S</div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+</template>
