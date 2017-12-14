@@ -123,7 +123,6 @@
           "interests": [
             "Evolutionary Computation"
           ],
-          "title": "Associate Professor, Information and Computer Sciences",
           "location": "Honolulu, HI",
           "picture": "/images/altenberg.jpg"
         },
@@ -135,7 +134,6 @@
           "interests": [
             "Computer Vision"
           ],
-          "title": "Associate Professor, Information and Computer Sciences",
           "location": "Honolulu, HI",
           "picture": "/images/baek.jpg"
         },
@@ -148,7 +146,6 @@
             "Mobile Networks",
             "Sailing"
           ],
-          "title": "Associate Professor, Information and Computer Sciences",
           "picture": "/images/biagioni.jpg"
         },
         {
@@ -160,7 +157,6 @@
             "Mars",
             "Imu Cooking"
           ],
-          "title": "Associate Professor, Information and Computer Sciences",
           "picture": "/images/binsted.jpg"
         },
         {
@@ -173,7 +169,6 @@
             "Surfing",
             "Photography"
           ],
-          "title": "Professor, Information and Computer Sciences",
           "picture": "/images/casanova.jpg"
         }
       ]
